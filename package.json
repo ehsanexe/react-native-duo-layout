@@ -38,6 +38,15 @@
     "hooks"
   ],
   "license": "MIT",
+  "author": "ehsanexe <ehsanexe01@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ehsanexe/react-native-duo-layout.git"
+  },
+  "homepage": "https://github.com/ehsanexe/react-native-duo-layout#readme",
+  "bugs": {
+    "url": "https://github.com/ehsanexe/react-native-duo-layout/issues"
+  },
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
