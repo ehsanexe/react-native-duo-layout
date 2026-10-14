@@ -15,7 +15,7 @@ export type StatusStripProviderProps = {
   expandedMinWidth?: number;
   /**
    * How far down the right strip its content starts, leaving room for the
-   * camera, time and wifi icon. Default 110.
+   * camera, time and wifi icon. Default 160.
    */
   iconsOffset?: number;
   /**

@@ -112,7 +112,7 @@ Wrap the app once, inside `SafeAreaProvider`. All props are optional:
 | Prop | Default | What it controls |
 |---|---|---|
 | `expandedMinWidth` | **600** (`DEFAULT_EXPANDED_MIN_WIDTH`) | Minimum window width (pt) for the expanded layout. |
-| `iconsOffset` | **110** (`DEFAULT_STATUS_ICONS_OFFSET`) | How far down the right strip its content starts, below the camera, time and wifi. |
+| `iconsOffset` | **160** (`DEFAULT_STATUS_ICONS_OFFSET`) | How far down the right strip its content starts, below the camera, time and wifi. |
 | `topStripLeftGap` | **12** (`DEFAULT_TOP_STRIP_LEFT_GAP`) | Gap from the left edge to the content when the strip runs across the top. |
 
 ```tsx
@@ -142,7 +142,7 @@ Set `enabled={false}` to hide it.
 ```ts
 import {
   DEFAULT_EXPANDED_MIN_WIDTH,  // 600
-  DEFAULT_STATUS_ICONS_OFFSET, // 110
+  DEFAULT_STATUS_ICONS_OFFSET, // 160
   DEFAULT_TOP_STRIP_LEFT_GAP,  // 12
 } from 'react-native-duo-layout';
 ```

@@ -7,7 +7,7 @@ export const DEFAULT_EXPANDED_MIN_WIDTH = 600;
 
 // Room taken by the camera, time and wifi icon at the top of the right strip.
 // Strip content starts below it.
-export const DEFAULT_STATUS_ICONS_OFFSET = 110;
+export const DEFAULT_STATUS_ICONS_OFFSET = 160;
 
 // Gap between the left edge and strip content when the strip runs across the
 // top, so the content sits beside the time and wifi icon.
