@@ -1,6 +1,6 @@
 {
   "name": "react-native-duo-layout",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Fold-aware layout hooks and a tappable status-strip toolbar for the iPhone Duo (and other foldables) in React Native.",
   "source": "./src/index.ts",
   "react-native": "./src/index.ts",
@@ -83,9 +83,24 @@
     "source": "src",
     "output": "lib",
     "targets": [
-      ["commonjs", { "esm": true }],
-      ["module", { "esm": true }],
-      ["typescript", { "project": "tsconfig.build.json" }]
+      [
+        "commonjs",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "module",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
     ]
   },
   "engines": {
