@@ -148,3 +148,35 @@ it('renders no host when there is no strip', () => {
   expect(screen.queryByTestId('status-strip-host')).toBeNull();
   expect(screen.queryByText('Back')).toBeNull();
 });
+
+it('places the strip content using the provider settings', () => {
+  mockStrip('right');
+  render(
+    <StatusStripProvider iconsOffset={140}>
+      <StatusStripSafeAreaView>
+        <StatusStripPortal>
+          <Text>Back</Text>
+        </StatusStripPortal>
+      </StatusStripSafeAreaView>
+    </StatusStripProvider>,
+  );
+  expect(screen.getByTestId('status-strip-host')).toHaveStyle({ top: 140 });
+});
+
+it('uses topStripLeftGap when the strip runs across the top', () => {
+  mockScreen.width = 669;
+  mockScreen.height = 951;
+  mockScreen.insets = { top: 44, right: 0, bottom: 0, left: 0 };
+  render(
+    <StatusStripProvider topStripLeftGap={20}>
+      <StatusStripSafeAreaView>
+        <StatusStripPortal>
+          <Text>Back</Text>
+        </StatusStripPortal>
+      </StatusStripSafeAreaView>
+    </StatusStripProvider>,
+  );
+  expect(screen.getByTestId('status-strip-host')).toHaveStyle({ left: 20 });
+  mockScreen.width = 466;
+  mockScreen.height = 678;
+});

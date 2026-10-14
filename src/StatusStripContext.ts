@@ -2,11 +2,13 @@ import { createContext, type ReactNode } from 'react';
 import {
   DEFAULT_EXPANDED_MIN_WIDTH,
   DEFAULT_STATUS_ICONS_OFFSET,
+  DEFAULT_TOP_STRIP_LEFT_GAP,
 } from './constants';
 
 export type StatusStripConfig = {
   expandedMinWidth: number;
   iconsOffset: number;
+  topStripLeftGap: number;
 };
 
 export type StatusStripRegistry = {
@@ -21,6 +23,7 @@ export type StatusStripRegistry = {
 export const StatusStripConfigContext = createContext<StatusStripConfig>({
   expandedMinWidth: DEFAULT_EXPANDED_MIN_WIDTH,
   iconsOffset: DEFAULT_STATUS_ICONS_OFFSET,
+  topStripLeftGap: DEFAULT_TOP_STRIP_LEFT_GAP,
 });
 
 export const StatusStripRegistryContext =

@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState, type ReactNode } from 'react';
 import {
   DEFAULT_EXPANDED_MIN_WIDTH,
   DEFAULT_STATUS_ICONS_OFFSET,
+  DEFAULT_TOP_STRIP_LEFT_GAP,
 } from './constants';
 import {
   StatusStripConfigContext,
@@ -14,9 +15,14 @@ export type StatusStripProviderProps = {
   expandedMinWidth?: number;
   /**
    * How far down the right strip its content starts, leaving room for the
-   * camera, time and wifi icon. Default 160.
+   * camera, time and wifi icon. Default 110.
    */
   iconsOffset?: number;
+  /**
+   * Gap between the left edge and the content when the strip runs across
+   * the top. Default 12.
+   */
+  topStripLeftGap?: number;
   children: ReactNode;
 };
 
@@ -28,6 +34,7 @@ type Entry = { id: string; content: ReactNode };
 export default function StatusStripProvider({
   expandedMinWidth = DEFAULT_EXPANDED_MIN_WIDTH,
   iconsOffset = DEFAULT_STATUS_ICONS_OFFSET,
+  topStripLeftGap = DEFAULT_TOP_STRIP_LEFT_GAP,
   children,
 }: StatusStripProviderProps) {
   const [entries, setEntries] = useState<Entry[]>([]);
@@ -50,8 +57,8 @@ export default function StatusStripProvider({
   }, []);
 
   const config = useMemo(
-    () => ({ expandedMinWidth, iconsOffset }),
-    [expandedMinWidth, iconsOffset],
+    () => ({ expandedMinWidth, iconsOffset, topStripLeftGap }),
+    [expandedMinWidth, iconsOffset, topStripLeftGap],
   );
   const registry = useMemo(() => ({ set, remove }), [set, remove]);
   const content = entries.length ? entries[entries.length - 1].content : null;

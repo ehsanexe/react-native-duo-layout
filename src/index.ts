@@ -9,6 +9,7 @@ export { default as StatusStripSafeAreaView } from './StatusStripSafeAreaView';
 export {
   DEFAULT_EXPANDED_MIN_WIDTH,
   DEFAULT_STATUS_ICONS_OFFSET,
+  DEFAULT_TOP_STRIP_LEFT_GAP,
 } from './constants';
 export type {
   Orientation,

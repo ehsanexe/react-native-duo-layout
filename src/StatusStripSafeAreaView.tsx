@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { StyleSheet, View, type ViewProps } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { TOP_STRIP_LEFT_GAP } from './constants';
 import {
   StatusStripConfigContext,
   StatusStripContentContext,
@@ -23,7 +22,7 @@ export default function StatusStripSafeAreaView({
 }: ViewProps) {
   const insets = useSafeAreaInsets();
   const strip = useStatusStrip();
-  const { iconsOffset } = useContext(StatusStripConfigContext);
+  const { iconsOffset, topStripLeftGap } = useContext(StatusStripConfigContext);
   const content = useContext(StatusStripContentContext);
 
   const hostStyle =
@@ -31,7 +30,7 @@ export default function StatusStripSafeAreaView({
       ? [styles.column, { top: iconsOffset, width: insets.right }]
       : [
           styles.row,
-          { left: insets.left + TOP_STRIP_LEFT_GAP, height: insets.top },
+          { left: insets.left + topStripLeftGap, height: insets.top },
         ];
 
   return (
