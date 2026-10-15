@@ -1,9 +1,10 @@
 # react-native-duo-layout
 
-Fold-aware layout hooks and a **tappable** status-strip toolbar for the iPhone Duo (and other foldables) in React Native. Written in TypeScript; no native code.
+Fold-aware layout hooks and a **tappable** status-strip toolbar for the iPhone Duo (and other foldables) in React Native. Written in TypeScript, plus one small iOS module for the hinge.
 
 - `useScreenLayout()`: compact vs expanded layout from the window size (re-renders on fold/unfold/rotate).
 - `useStatusStrip()`: where the Duo's status bar strip is: `'right'`, `'top'` or `null`.
+- `useHinge()`: the hinge's position and angle, e.g. to detect when the Duo is half-folded.
 - `StatusStripProvider` + `StatusStripSafeAreaView` + `StatusStripPortal`: put Back buttons and tabs *inside* the strip from any screen and have them receive taps.
 - Every layout value (expanded width, strip offsets) has a sensible default you can change.
 
@@ -14,6 +15,8 @@ npm install react-native-duo-layout react-native-safe-area-context
 ```
 
 Peer dependencies: `react`, `react-native`, `react-native-safe-area-context >= 4`.
+
+`useHinge()` uses native code, so run `pod install` in `ios/` after installing and rebuild the app.
 
 ## Usage
 
@@ -104,6 +107,33 @@ Reads the safe-area insets:
 - `'right'`: only the right edge is inset (Duo folded, or unfolded landscape).
 - `'top'`: top inset on an expanded, non-iPad screen (Duo unfolded portrait).
 - `null`: no usable strip (normal phones, iPads).
+
+### `useHinge()`
+
+Returns `{ status, angle }` and re-renders when the hinge moves:
+
+| `status` | Meaning |
+|---|---|
+| `'closed'` | Folded shut. |
+| `'partiallyOpen'` | Half-folded, e.g. standing like a book. |
+| `'fullyOpen'` | Opened flat. |
+| `'unknown'` | No reading yet, or not supported (see below). |
+| `'unavailable'` | The app moved off the screen that reports the hinge. |
+
+`angle` is in degrees (180 when flat), or `null` with no reading. How often it updates is up to the system, so prefer `status` when you only need the position.
+
+```tsx
+const { status } = useHinge();
+const { width, orientation } = useScreenLayout();
+
+// Half-folded in landscape, end the list at the hinge.
+const listWidth =
+  status === 'partiallyOpen' && orientation === 'landscape' ? width / 2 : width / 3;
+```
+
+It reads `UIHingeInteraction`, which needs **iOS 27.1** or later. On older iOS, on devices without a hinge and on Android the status stays `'unknown'`.
+
+Tip: give a pane an explicit `width` that changes, rather than switching between `width` and `flex` styles when the hinge moves; switching style keys on a mounted view can leave the old size behind.
 
 ### `<StatusStripProvider expandedMinWidth? iconsOffset? topStripLeftGap?>`
 

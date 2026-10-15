@@ -18,3 +18,22 @@ export type StatusStripPlacement = 'right' | 'top';
 
 /** The strip's placement, or null when there is no strip we can use. */
 export type StatusStrip = StatusStripPlacement | null;
+
+/**
+ * The hinge's position:
+ * 'closed', 'partiallyOpen' (half-folded), 'fullyOpen', 'unknown' (no
+ * reading yet, or not supported) or 'unavailable' (the app left the screen
+ * that reports the hinge).
+ */
+export type HingeStatus =
+  | 'closed'
+  | 'partiallyOpen'
+  | 'fullyOpen'
+  | 'unknown'
+  | 'unavailable';
+
+export type Hinge = {
+  status: HingeStatus;
+  /** Hinge angle in degrees, or null when there is no reading. */
+  angle: number | null;
+};

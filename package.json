@@ -24,6 +24,8 @@
   "files": [
     "src",
     "lib",
+    "ios",
+    "*.podspec",
     "!**/__tests__",
     "!**/*.test.*"
   ],
