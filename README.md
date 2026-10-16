@@ -1,5 +1,16 @@
 # react-native-duo-layout
 
+<table>
+  <tr>
+    <td align="center"><img src="docs/images/unfolded-landscape.png" width="400" alt="Unfolded in landscape: list and detail side by side, tabs in the status strip on the right" /><br />Unfolded, landscape</td>
+    <td align="center"><img src="docs/images/half-folded-landscape.png" width="400" alt="Half-folded in landscape: the list ends at the hinge" /><br />Half-folded</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/images/unfolded-portrait.png" width="300" alt="Unfolded in portrait: tabs in the status strip across the top" /><br />Unfolded, portrait</td>
+    <td align="center"><img src="docs/images/folded-cover.png" width="250" alt="Folded cover screen: one pane, Back and tabs in the status strip on the right" /><br />Folded</td>
+  </tr>
+</table>
+
 Fold-aware layout hooks and a **tappable** status-strip toolbar for the iPhone Duo (and other foldables) in React Native. Written in TypeScript, plus one small iOS module for the hinge.
 
 - `useScreenLayout()`: compact vs expanded layout from the window size (re-renders on fold/unfold/rotate).
