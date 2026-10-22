@@ -17,9 +17,9 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
@@ -57,5 +57,11 @@ jobs:
       - name: Tag release
         if: steps.check.outputs.skip == 'false'
         run: |
-          git tag "v${{ steps.check.outputs.version }}"
-          git push origin "v${{ steps.check.outputs.version }}"
+          TAG="v${{ steps.check.outputs.version }}"
+          # `npm version` + `git push --follow-tags` may have pushed it already.
+          if git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null; then
+            echo "$TAG already exists on origin, skipping."
+          else
+            git tag "$TAG"
+            git push origin "$TAG"
+          fi
